@@ -13,17 +13,21 @@ struct CitiesListView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 12) {
+                header
                 searchBar
-
                 if viewModel.isLoading {
                     ProgressView("Loading...")
+                        .font(UalaFont.regular(16))
+                        .foregroundColor(.textSecondary)
                         .padding()
                 } else {
                     listView
                 }
             }
-            .navigationTitle("Cities")
+            .padding(.top, 8)
+            .background(Color.backgroundLight)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.fetchCities()
             }
@@ -33,16 +37,22 @@ struct CitiesListView: View {
     private var searchBar: some View {
         SearchBar(text: $viewModel.searchText)
     }
-
+    private var header: some View {
+        Text("Cities")
+            .font(UalaFont.bold(40))
+            .foregroundColor(Color.backgroundBlue)
+    }
     private var listView: some View {
         List(viewModel.filteredCities) { city in
-            HStack {
-                VStack(alignment: .leading) {
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(city.title)
-                        .font(.headline)
+                        .font(UalaFont.medium(16))
+                        .foregroundColor(.primary)
+
                     Text(city.subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .font(UalaFont.light(13))
+                        .foregroundColor(.textSecondary)
                 }
 
                 Spacer()
@@ -51,10 +61,12 @@ struct CitiesListView: View {
                     viewModel.toggleFavorite(id: city.id)
                 }) {
                     Image(systemName: city.isFavorite ? "star.fill" : "star")
-                        .foregroundColor(city.isFavorite ? .yellow : .gray)
+                        .foregroundColor(city.isFavorite ? .accentRed : .gray)
+                        .imageScale(.medium)
                 }
-                .buttonStyle(BorderlessButtonStyle()) // Evita que seleccione toda la celda
+                .buttonStyle(BorderlessButtonStyle())
             }
+            .padding(.vertical, 8)
             .contentShape(Rectangle())
             .onTapGesture {
                 // TODO: Navegar a mapa
@@ -65,9 +77,11 @@ struct CitiesListView: View {
                 } label: {
                     Label("Info", systemImage: "info.circle")
                 }
-                .tint(.blue)
+                .tint(.secondaryPurple)
             }
         }
         .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color.backgroundLight)
     }
 }
