@@ -9,12 +9,24 @@ import SwiftUI
 
 @main
 struct UalaChallengeApp: App {
+    @State private var showSplash = true
+
     var body: some Scene {
         WindowGroup {
-            SplashScreen()
-      //     CitiesListView(
-      //         viewModel: CitiesListViewModel(service: CityService())
-      //      )
+            if showSplash {
+                SplashScreen()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            withAnimation {
+                                showSplash = false
+                            }
+                        }
+                    }
+            } else {
+                CitiesListView(
+                    viewModel: CitiesListViewModel(service: CityService())
+                )
+            }
         }
     }
 }
