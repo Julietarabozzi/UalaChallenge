@@ -11,7 +11,10 @@ import SwiftUI
 struct UalaChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreen()
+      //     CitiesListView(
+      //         viewModel: CitiesListViewModel(service: CityService())
+      //      )
         }
     }
 }
