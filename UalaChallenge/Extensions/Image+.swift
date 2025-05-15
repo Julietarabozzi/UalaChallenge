@@ -10,4 +10,5 @@ import SwiftUI
 
 extension Image {
     public static var ualalogo: Image { Image("UalaLogo") }
+    public static var searchicon: Image { Image("magnifyingglass") }
 }

@@ -31,9 +31,7 @@ struct CitiesListView: View {
     }
 
     private var searchBar: some View {
-        TextField("Search city", text: $viewModel.searchText)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding(.horizontal)
+        SearchBar(text: $viewModel.searchText)
     }
 
     private var listView: some View {
