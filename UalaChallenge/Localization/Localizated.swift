@@ -12,6 +12,8 @@ extension String {
     static var latitudeLabel: String { "🚨Latitude".localized }
     static var longitudeLabel: String { "🚨Longitude".localized }
     static var citiesListTitle: String { "🚨Cities".localized }
+    static var challengeTitle: String { "🚨Challenge"
+.localized }
 }
 
 extension String {

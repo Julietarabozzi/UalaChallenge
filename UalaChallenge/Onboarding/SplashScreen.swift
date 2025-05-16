@@ -13,15 +13,15 @@ struct SplashScreen: View {
         ZStack {
             Color.backgroundBlue
                 .ignoresSafeArea()
-            VStack(spacing: 150) {
+            VStack(spacing: .spacing70) {
                 Image.ualalogo
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200)
+                    .frame(width: .width200)
                 Text("Challenge")
-                    .font(UalaFont.medium(28))
+                    .font(UalaFont.bold(.fontSize18))
                     .foregroundColor(.white)
-                    .padding(.bottom, 12)
+                    .padding(.bottom, .padding12)
             }
         }
     }

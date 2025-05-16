@@ -19,9 +19,12 @@ final class CitiesListViewModel: ObservableObject {
     private var allCities: [City] = []
     private var cancellables = Set<AnyCancellable>()
     private var favorites: Set<Int> = []
-
-    init(service: CityServiceProtocol) {
+    private let storage: FavoritesStorageProtocol
+    
+    init(service: CityServiceProtocol, storage: FavoritesStorageProtocol = FavoritesStorage()) {
         self.service = service
+        self.storage = storage
+        self.favorites = storage.getFavorites()
         bindSearch()
     }
 
@@ -79,6 +82,7 @@ final class CitiesListViewModel: ObservableObject {
         } else {
             favorites.insert(id)
         }
+        storage.saveFavorites(favorites)
         applyFilter()
     }
 }

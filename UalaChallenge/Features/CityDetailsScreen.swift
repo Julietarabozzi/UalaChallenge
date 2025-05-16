@@ -60,7 +60,7 @@ struct CityDetailsView: View {
     private var image: some View {
         Image(.latitud)
             .resizable()
-            .frame(width: .width160, height: .height160)
+            .frame(width: .width100, height: .height100)
             .padding(.top, .padding32)
     }
 }
