@@ -23,7 +23,7 @@ struct CityDetailsView: View {
         }
     }
     private var header: some View {
-        Text("City Info")
+        Text(String.cityInfoTitle)
             .font(UalaFont.bold(40))
             .foregroundColor(Color.backgroundBlue)
     }
@@ -35,7 +35,7 @@ struct CityDetailsView: View {
 
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Latitud")
+                    Text(String.latitudeLabel)
                         .font(UalaFont.light(13))
                         .foregroundColor(.textSecondary)
                     Text("\(city.coordinate.lat)")
@@ -46,7 +46,7 @@ struct CityDetailsView: View {
 
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Longitud")
+                    Text(String.longitudeLabel)
                         .font(UalaFont.light(13))
                         .foregroundColor(.textSecondary)
                     Text("\(city.coordinate.lon)")

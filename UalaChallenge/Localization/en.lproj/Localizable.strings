@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  UalaChallenge
+
+  Created by Julieta Rabozzi on 16/05/2025.
+  
+*/
+"🚨City Info Title" = "City Info";
+"🚨Latitude" = "Latitude";
+"🚨Longitude" = "Longitude";
+"🚨Cities" = "Cities";

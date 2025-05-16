@@ -9,26 +9,22 @@ import Foundation
 import Combine
 
 final class CitiesListViewModel: ObservableObject {
-    // MARK: - Inputs
+
     @Published var searchText: String = ""
     
-    // MARK: - Outputs
     @Published private(set) var filteredCities: [CityViewData] = []
     @Published private(set) var isLoading: Bool = false
     
-    // MARK: - Internals
     private let service: CityServiceProtocol
     private var allCities: [City] = []
     private var cancellables = Set<AnyCancellable>()
     private var favorites: Set<Int> = []
 
-    // MARK: - Init
     init(service: CityServiceProtocol) {
         self.service = service
         bindSearch()
     }
 
-    // MARK: - Lifecycle
     func fetchCities() {
         isLoading = true
         Task {
@@ -40,7 +36,7 @@ final class CitiesListViewModel: ObservableObject {
                     self.isLoading = false
                 }
             } catch {
-                // Manejo de errores/log
+
                 await MainActor.run {
                     self.isLoading = false
                 }
@@ -48,7 +44,6 @@ final class CitiesListViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Search Binding
     private func bindSearch() {
         $searchText
             .removeDuplicates()
@@ -59,7 +54,6 @@ final class CitiesListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    // MARK: - Filtering
     private func applyFilter() {
         let query = searchText.lowercased()
         let result = allCities
@@ -78,7 +72,7 @@ final class CitiesListViewModel: ObservableObject {
         filteredCities = result
     }
 
-    // MARK: - Favorites
+
     func toggleFavorite(id: Int) {
         if favorites.contains(id) {
             favorites.remove(id)

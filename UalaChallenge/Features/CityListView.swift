@@ -35,7 +35,7 @@ struct CitiesListView: View {
         SearchBar(text: $viewModel.searchText)
     }
     private var header: some View {
-        Text("Cities")
+        Text(String.citiesListTitle)
             .font(UalaFont.bold(40))
             .foregroundColor(Color.backgroundBlue)
             .padding()
@@ -58,7 +58,7 @@ struct CitiesListView: View {
                 Button(action: {
                     viewModel.toggleFavorite(id: city.id)
                 }) {
-                    Image(systemName: city.isFavorite ? "star.fill" : "star")
+                    (city.isFavorite ? Image.starfill : Image.star)
                         .foregroundColor(city.isFavorite ? .accentRed : .gray)
                         .imageScale(.medium)
                 }
