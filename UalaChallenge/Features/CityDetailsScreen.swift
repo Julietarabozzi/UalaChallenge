@@ -25,6 +25,7 @@ struct CityDetailsView: View {
         Text(String.cityInfoTitle)
             .font(UalaFont.bold(.fontSize40))
             .foregroundColor(Color.backgroundBlue)
+            .padding()
     }
     private var content: some View {
         VStack(alignment: .leading) {
@@ -60,6 +61,6 @@ struct CityDetailsView: View {
         Image(.latitud)
             .resizable()
             .frame(width: .width100, height: .height100)
-            .padding(.top, .padding32)
+            .padding()
     }
 }
