@@ -10,9 +10,10 @@ import SwiftUI
 
 struct CitiesListView: View {
     @ObservedObject var viewModel: CitiesListViewModel
+    @StateObject var router = CitiesRouterImpl()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.routes) {
             VStack(spacing: 12) {
                 header
                 searchBar
@@ -28,9 +29,8 @@ struct CitiesListView: View {
             .padding(.top, 8)
             .background(Color.backgroundLight)
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                viewModel.fetchCities()
-            }
+            .onAppear { viewModel.fetchCities() }
+            .navigationDestination(for: CitiesRoutes.self) { $0.destination }
         }
     }
 
@@ -69,15 +69,7 @@ struct CitiesListView: View {
             .padding(.vertical, 8)
             .contentShape(Rectangle())
             .onTapGesture {
-                // TODO: Navegar a mapa
-            }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                Button {
-                    // TODO: Navegar a detalle
-                } label: {
-                    Label("Info", systemImage: "info.circle")
-                }
-                .tint(.secondaryPurple)
+                router.push(.cityDetails(city: city))
             }
         }
         .listStyle(.plain)
