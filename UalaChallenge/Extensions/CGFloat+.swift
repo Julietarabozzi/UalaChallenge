@@ -20,6 +20,7 @@ extension CGFloat {
     static let padding32: CGFloat = 32
 
     // Font Sizes
+    static let fontSize12: CGFloat = 12
     static let fontSize14: CGFloat = 14
     static let fontSize16: CGFloat = 16
     static let fontSize18: CGFloat = 18

@@ -10,11 +10,14 @@ import SwiftUI
 
 enum CitiesRoutes {
     case cityDetails(city: CityViewData)
+    case cityMap
 
     var id: String {
         switch self {
         case .cityDetails(let city):
             return "city_\(city.id)"
+        case .cityMap:
+            return "city_map"
         }
     }
 
@@ -23,6 +26,8 @@ enum CitiesRoutes {
         switch self {
         case .cityDetails(let city):
             CityDetailsView(city: city)
+        case .cityMap:
+            CityMapScreen()
         }
     }
 }

@@ -56,6 +56,13 @@ struct CitiesListView: View {
                     Text(city.subtitle)
                         .font(UalaFont.light(.fontSize14))
                         .foregroundColor(.textSecondary)
+                    Button {
+                        router.push(.cityDetails(city: city))
+                    } label: {
+                        Text("+ Info")
+                            .font(UalaFont.regular(.fontSize14))
+                    }
+                    .buttonStyle(.cityInfoStyle())
                 }
 
                 Spacer()
@@ -72,7 +79,7 @@ struct CitiesListView: View {
             .padding(.vertical, .padding8)
             .contentShape(Rectangle())
             .onTapGesture {
-                router.push(.cityDetails(city: city))
+                router.push(.cityMap)
             }
         }
         .listStyle(.plain)
