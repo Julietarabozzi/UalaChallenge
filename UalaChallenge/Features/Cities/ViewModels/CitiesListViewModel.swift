@@ -16,10 +16,10 @@ final class CitiesListViewModel: ObservableObject {
     @Published private(set) var isLoading: Bool = false
     
     private let service: CityServiceProtocol
-    private var allCities: [City] = []
     private var cancellables = Set<AnyCancellable>()
     private var favorites: Set<Int> = []
     private let storage: FavoritesStorageProtocol
+    var allCities: [City] = []
     
     init(service: CityServiceProtocol, storage: FavoritesStorageProtocol = FavoritesStorage()) {
         self.service = service
