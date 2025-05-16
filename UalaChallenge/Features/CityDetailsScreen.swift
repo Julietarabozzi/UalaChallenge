@@ -17,7 +17,7 @@ struct CityDetailsView: View {
             header
             content
             image
-                .background(Color.backgroundLight.ignoresSafeArea())
+                .background(Color.textSecondary.opacity(0.1).ignoresSafeArea())
                 .setBackButton(color: .primaryblue, action: { dismiss() })
         }
     }
@@ -25,7 +25,7 @@ struct CityDetailsView: View {
         Text(String.cityInfoTitle)
             .font(UalaFont.bold(.fontSize40))
             .foregroundColor(Color.backgroundBlue)
-            .padding()
+            .padding(.top)
     }
     private var content: some View {
         VStack(alignment: .leading) {
