@@ -13,13 +13,14 @@ struct CityDetailsView: View {
     let city: CityViewData
 
     var body: some View {
-        header
-        content
-        .padding(.horizontal, 24)
-        .padding(.bottom, 32)
-        .background(Color.backgroundLight.ignoresSafeArea())
-        .navigationBarTitleDisplayMode(.inline)
-        .setBackButton(color: .primaryblue, action: { dismiss() })
+        VStack(spacing: 70) {
+            header
+            content
+            image
+                .background(Color.backgroundLight.ignoresSafeArea())
+                .navigationBarTitleDisplayMode(.inline)
+                .setBackButton(color: .primaryblue, action: { dismiss() })
+        }
     }
     private var header: some View {
         Text("City Info")
@@ -27,15 +28,12 @@ struct CityDetailsView: View {
             .foregroundColor(Color.backgroundBlue)
     }
     private var content: some View {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .leading, spacing: 100) {
             Text(city.title)
                 .font(UalaFont.bold(24))
                 .foregroundColor(.primary)
-                .padding(.top, 32)
 
             HStack(spacing: 12) {
-                Image(systemName: "location.north.fill")
-                    .foregroundColor(.primaryblue)
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Latitud")
                         .font(UalaFont.light(13))
@@ -47,8 +45,6 @@ struct CityDetailsView: View {
             }
 
             HStack(spacing: 12) {
-                Image(systemName: "location.south.fill")
-                    .foregroundColor(.primaryblue)
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Longitud")
                         .font(UalaFont.light(13))
@@ -58,8 +54,13 @@ struct CityDetailsView: View {
                         .foregroundColor(.primary)
                 }
             }
-
-            Spacer()
         }
+    }
+    
+    private var image: some View {
+        Image(.latitud)
+            .resizable()
+            .frame(width: 150, height: 150)
+            .padding(.top, 32)
     }
 }

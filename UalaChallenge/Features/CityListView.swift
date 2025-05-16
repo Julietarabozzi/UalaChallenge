@@ -38,6 +38,7 @@ struct CitiesListView: View {
         Text("Cities")
             .font(UalaFont.bold(40))
             .foregroundColor(Color.backgroundBlue)
+            .padding()
     }
     private var listView: some View {
         List(viewModel.filteredCities) { city in
