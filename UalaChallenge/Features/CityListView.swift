@@ -70,14 +70,14 @@ struct CitiesListView: View {
                         Button {
                             router.push(.cityMap(city: city))
                         } label: {
-                            Text("Ver en mapa")
+                            Text(String.viewMapLabel)
                                 .font(UalaFont.regular(.fontSize14))
                         }
                         .buttonStyle(.cityInfoStyle())
                         Button {
                             router.push(.cityDetails(city: city))
                         } label: {
-                            Text("+ Info")
+                            Text(String.detailsLabel)
                                 .font(UalaFont.regular(.fontSize14))
                                 .foregroundColor(Color.primaryBlue)
                         }

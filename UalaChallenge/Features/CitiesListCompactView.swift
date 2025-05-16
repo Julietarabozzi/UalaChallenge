@@ -72,7 +72,7 @@ struct CitiesListCompactView: View {
                         selectedCity = city
                         detailMode = .map
                     } label: {
-                        Text("Ver en mapa")
+                        Text(String.viewMapLabel)
                             .font(UalaFont.regular(.fontSize14))
                     }
                     .buttonStyle(.cityInfoStyle())
@@ -81,7 +81,7 @@ struct CitiesListCompactView: View {
                         selectedCity = city
                         detailMode = .info
                     } label: {
-                        Text("+ Info")
+                        Text(String.detailsLabel)
                             .font(UalaFont.regular(.fontSize14))
                             .foregroundColor(Color.primaryBlue)
                     }

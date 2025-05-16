@@ -36,7 +36,8 @@ struct ResponsiveCitiesScreen: View {
                         .id(city.id)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
-                        Text("Selecciona una ciudad")
+                        Text(String.exploreText)
+                            .font(UalaFont.light(.fontSize14))
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 }

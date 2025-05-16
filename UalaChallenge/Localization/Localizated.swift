@@ -14,7 +14,10 @@ extension String {
     static var citiesListTitle: String { "🚨Cities".localized }
     static var challengeTitle: String { "🚨Challenge"
 .localized }
-    static var showFavoritesToggleLabel: String { "🚨Show only favorites".localized }
+    static var showFavoritesToggleLabel: String { "🚨ShowFavorites".localized }
+    static var exploreText: String { "🚨ExploreCity".localized }
+    static var viewMapLabel: String {  "🚨ViewMapLabel".localized }
+    static var detailsLabel: String {  "🚨DetailsLabel".localized }
 }
 
 extension String {
