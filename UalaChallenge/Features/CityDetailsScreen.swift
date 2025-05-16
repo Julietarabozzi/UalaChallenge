@@ -61,6 +61,6 @@ struct CityDetailsView: View {
         Image(.latitud)
             .resizable()
             .frame(width: .width100, height: .height100)
-            .padding()
+            .padding(.bottom)
     }
 }

@@ -61,8 +61,8 @@ struct CitiesListCompactView: View {
                         } label: {
                             Text("+ Info")
                                 .font(UalaFont.regular(.fontSize14))
+                                .foregroundColor(Color.primaryBlue)
                         }
-                        .buttonStyle(.cityInfoStyle())
                     }
                 }
                 .padding(.vertical, .padding8)

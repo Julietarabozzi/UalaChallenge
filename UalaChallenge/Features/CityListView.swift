@@ -56,13 +56,22 @@ struct CitiesListView: View {
                     Text(city.subtitle)
                         .font(UalaFont.light(.fontSize14))
                         .foregroundColor(.textSecondary)
-                    Button {
-                        router.push(.cityDetails(city: city))
-                    } label: {
-                        Text("+ Info")
-                            .font(UalaFont.regular(.fontSize14))
+                    HStack {
+                        Button {
+                            router.push(.cityMap(city: city))
+                        } label: {
+                            Text("Ver en mapa")
+                                .font(UalaFont.regular(.fontSize14))
+                        }
+                        .buttonStyle(.cityInfoStyle())
+                        Button {
+                            router.push(.cityDetails(city: city))
+                        } label: {
+                            Text("+ Info")
+                                .font(UalaFont.regular(.fontSize14))
+                                .foregroundColor(Color.primaryBlue)
+                        }
                     }
-                    .buttonStyle(.cityInfoStyle())
                 }
 
                 Spacer()
@@ -78,9 +87,6 @@ struct CitiesListView: View {
             }
             .padding(.vertical, .padding8)
             .contentShape(Rectangle())
-            .onTapGesture {
-                router.push(.cityMap(city: city))
-            }
         }
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
