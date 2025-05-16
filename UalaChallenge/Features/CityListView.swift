@@ -15,14 +15,11 @@ struct CitiesListView: View {
     var body: some View {
         NavigationStack(path: $router.routes) {
             VStack(spacing: 12) {
-                header
-                searchBar
                 if viewModel.isLoading {
-                    ProgressView("Loading...")
-                        .font(UalaFont.regular(16))
-                        .foregroundColor(.textSecondary)
-                        .padding()
+                    LoadingView()
                 } else {
+                    header
+                    searchBar
                     listView
                 }
             }
