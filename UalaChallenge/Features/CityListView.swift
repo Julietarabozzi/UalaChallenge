@@ -14,7 +14,7 @@ struct CitiesListView: View {
 
     var body: some View {
         NavigationStack(path: $router.routes) {
-            VStack(spacing: 12) {
+            VStack(spacing: .spacing12) {
                 if viewModel.isLoading {
                     LoadingView()
                 } else {
@@ -23,7 +23,7 @@ struct CitiesListView: View {
                     listView
                 }
             }
-            .padding(.top, 8)
+            .padding(.top, .padding8)
             .background(Color.backgroundLight)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear { viewModel.fetchCities() }
@@ -36,20 +36,20 @@ struct CitiesListView: View {
     }
     private var header: some View {
         Text(String.citiesListTitle)
-            .font(UalaFont.bold(40))
+            .font(UalaFont.bold(.fontSize40))
             .foregroundColor(Color.backgroundBlue)
             .padding()
     }
     private var listView: some View {
         List(viewModel.filteredCities) { city in
-            HStack(spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: .spacing12) {
+                VStack(alignment: .leading, spacing: .spacing8) {
                     Text(city.title)
-                        .font(UalaFont.medium(16))
+                        .font(UalaFont.medium(.fontSize16))
                         .foregroundColor(.primary)
 
                     Text(city.subtitle)
-                        .font(UalaFont.light(13))
+                        .font(UalaFont.light(.fontSize14))
                         .foregroundColor(.textSecondary)
                 }
 
@@ -64,7 +64,7 @@ struct CitiesListView: View {
                 }
                 .buttonStyle(BorderlessButtonStyle())
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, .padding8)
             .contentShape(Rectangle())
             .onTapGesture {
                 router.push(.cityDetails(city: city))

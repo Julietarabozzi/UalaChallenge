@@ -13,7 +13,7 @@ struct CityDetailsView: View {
     let city: CityViewData
 
     var body: some View {
-        VStack(spacing: 70) {
+        VStack(spacing: .spacing70) {
             header
             content
             image
@@ -24,33 +24,33 @@ struct CityDetailsView: View {
     }
     private var header: some View {
         Text(String.cityInfoTitle)
-            .font(UalaFont.bold(40))
+            .font(UalaFont.bold(.fontSize40))
             .foregroundColor(Color.backgroundBlue)
     }
     private var content: some View {
-        VStack(alignment: .leading, spacing: 100) {
+        VStack(alignment: .leading) {
             Text(city.title)
-                .font(UalaFont.bold(24))
+                .font(UalaFont.bold(.fontSize24))
                 .foregroundColor(.primary)
 
-            HStack(spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: .spacing12) {
+                VStack(alignment: .leading, spacing: .spacing8) {
                     Text(String.latitudeLabel)
-                        .font(UalaFont.light(13))
+                        .font(UalaFont.light(.fontSize14))
                         .foregroundColor(.textSecondary)
                     Text("\(city.coordinate.lat)")
-                        .font(UalaFont.regular(16))
+                        .font(UalaFont.regular(.fontSize16))
                         .foregroundColor(.primary)
                 }
             }
 
-            HStack(spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: .spacing12) {
+                VStack(alignment: .leading, spacing: .spacing8) {
                     Text(String.longitudeLabel)
-                        .font(UalaFont.light(13))
+                        .font(UalaFont.light(.fontSize14))
                         .foregroundColor(.textSecondary)
                     Text("\(city.coordinate.lon)")
-                        .font(UalaFont.regular(16))
+                        .font(UalaFont.regular(.fontSize16))
                         .foregroundColor(.primary)
                 }
             }
@@ -60,7 +60,7 @@ struct CityDetailsView: View {
     private var image: some View {
         Image(.latitud)
             .resizable()
-            .frame(width: 150, height: 150)
-            .padding(.top, 32)
+            .frame(width: .width160, height: .height160)
+            .padding(.top, .padding32)
     }
 }
