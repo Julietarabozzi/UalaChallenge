@@ -18,7 +18,6 @@ struct CityDetailsView: View {
             content
             image
                 .background(Color.backgroundLight.ignoresSafeArea())
-                .navigationBarTitleDisplayMode(.inline)
                 .setBackButton(color: .primaryblue, action: { dismiss() })
         }
     }

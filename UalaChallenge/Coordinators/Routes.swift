@@ -10,7 +10,7 @@ import SwiftUI
 
 enum CitiesRoutes {
     case cityDetails(city: CityViewData)
-    case cityMap
+    case cityMap(city: CityViewData)
 
     var id: String {
         switch self {
@@ -26,8 +26,8 @@ enum CitiesRoutes {
         switch self {
         case .cityDetails(let city):
             CityDetailsView(city: city)
-        case .cityMap:
-            CityMapScreen()
+        case .cityMap(let city):
+            CityMapScreen(city: city)
         }
     }
 }

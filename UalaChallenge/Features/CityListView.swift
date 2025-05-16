@@ -79,7 +79,7 @@ struct CitiesListView: View {
             .padding(.vertical, .padding8)
             .contentShape(Rectangle())
             .onTapGesture {
-                router.push(.cityMap)
+                router.push(.cityMap(city: city))
             }
         }
         .listStyle(.plain)
