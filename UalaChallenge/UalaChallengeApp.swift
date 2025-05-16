@@ -23,9 +23,9 @@ struct UalaChallengeApp: App {
                         }
                     }
             } else {
-                CitiesListView(
-                    viewModel: CitiesListViewModel(service: CityService())
-                )
+                ResponsiveCitiesScreen(
+                              viewModel: CitiesListViewModel(service: CityService())
+                          )
             }
         }
     }
