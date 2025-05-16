@@ -11,6 +11,7 @@ import SwiftUI
 struct CitiesListView: View {
     @ObservedObject var viewModel: CitiesListViewModel
     @StateObject var router = CitiesRouterImpl()
+    @State private var showOnlyFavorites = false
 
     var body: some View {
         NavigationStack(path: $router.routes) {
@@ -19,6 +20,7 @@ struct CitiesListView: View {
                     LoadingView()
                 } else {
                     header
+                    filterToggle
                     searchBar
                     listView
                 }
@@ -28,6 +30,9 @@ struct CitiesListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear { viewModel.fetchCities() }
             .navigationDestination(for: CitiesRoutes.self) { $0.destination }
+            .onChange(of: showOnlyFavorites) {
+                viewModel.applyFilter(showOnlyFavorites: showOnlyFavorites)
+            }
         }
     }
 
@@ -73,5 +78,15 @@ struct CitiesListView: View {
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .background(Color.backgroundLight)
+    }
+    private var filterToggle: some View {
+        Toggle(isOn: $showOnlyFavorites) {
+            Text(String.showFavoritesToggleLabel)
+                .font(UalaFont.medium(.fontSize14))
+                .foregroundColor(.textsecondary)
+        }
+        .toggleStyle(SwitchToggleStyle(tint: .accentRed))
+        .padding(.horizontal, .padding16)
+        
     }
 }

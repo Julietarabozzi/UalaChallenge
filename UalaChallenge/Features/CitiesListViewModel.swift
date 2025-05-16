@@ -57,10 +57,11 @@ final class CitiesListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func applyFilter() {
+     func applyFilter(showOnlyFavorites: Bool = false) {
         let query = searchText.lowercased()
         let result = allCities
             .filter { query.isEmpty || $0.name.lowercased().hasPrefix(query) }
+            .filter { !showOnlyFavorites || favorites.contains($0.id) }
             .sorted { $0.name < $1.name }
             .map { city in
                 CityViewData(
