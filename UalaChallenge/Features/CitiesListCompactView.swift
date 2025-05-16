@@ -16,72 +16,90 @@ struct CitiesListCompactView: View {
 
     var body: some View {
         VStack(spacing: .spacing12) {
-            Text(String.citiesListTitle)
-                .font(UalaFont.bold(.fontSize40))
-                .foregroundColor(.backgroundBlue)
-                .padding(.top, .padding12)
-
-            Toggle(isOn: $showOnlyFavorites) {
-                Text(String.showFavoritesToggleLabel)
-                    .font(UalaFont.medium(.fontSize14))
-                    .foregroundColor(.textsecondary)
+            if viewModel.isLoading {
+                LoadingView()
+            } else {
+                header
+                filterToggle
+                searchBar
+                listView
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
             }
-            .toggleStyle(SwitchToggleStyle(tint: .accentRed))
-            .padding(.horizontal, .padding16)
-            .onChange(of: showOnlyFavorites) {
-                viewModel.applyFilter(showOnlyFavorites: showOnlyFavorites)
-            }
-
-            SearchBar(text: $viewModel.searchText)
-                .padding(.horizontal, .padding16)
-
-            List(viewModel.filteredCities) { city in
-                VStack(alignment: .leading, spacing: .spacing8) {
-                    Text(city.title)
-                        .font(UalaFont.medium(.fontSize14))
-                        .foregroundColor(.primary)
-
-                    Text(city.subtitle)
-                        .font(UalaFont.light(.fontSize12))
-                        .foregroundColor(.textSecondary)
-
-                    HStack {
-                        Button {
-                            selectedCity = city
-                            detailMode = .map
-                        } label: {
-                            Text("Ver en mapa")
-                                .font(UalaFont.regular(.fontSize14))
-                        }
-                        .buttonStyle(.cityInfoStyle())
-
-                        Button {
-                            selectedCity = city
-                            detailMode = .info
-                        } label: {
-                            Text("+ Info")
-                                .font(UalaFont.regular(.fontSize14))
-                                .foregroundColor(Color.primaryBlue)
-                        }
-                    }
-                }
-                .padding(.vertical, .padding8)
-                .contentShape(Rectangle())
-                .overlay(alignment: .topTrailing) {
-                    Button(action: {
-                        viewModel.toggleFavorite(id: city.id)
-                    }) {
-                        (city.isFavorite ? Image.starfill : Image.star)
-                            .foregroundColor(city.isFavorite ? .accentRed : .gray)
-                            .imageScale(.medium)
-                    }
-                    .buttonStyle(BorderlessButtonStyle())
-                    .padding(.top, .padding4)
-                }
-            }
-            .listStyle(.plain)
-            .scrollContentBackground(.hidden)
         }
         .background(Color.backgroundLight)
+        .onAppear {
+            if viewModel.filteredCities.isEmpty && !viewModel.isLoading {
+                viewModel.fetchCities()
+            }
+        }
+    }
+    private var header: some View {
+        Text(String.citiesListTitle)
+            .font(UalaFont.bold(.fontSize40))
+            .foregroundColor(.backgroundBlue)
+            .padding(.top, .padding12)
+    }
+    private var filterToggle: some View {
+        Toggle(isOn: $showOnlyFavorites) {
+            Text(String.showFavoritesToggleLabel)
+                .font(UalaFont.medium(.fontSize14))
+                .foregroundColor(.textsecondary)
+        }
+        .toggleStyle(SwitchToggleStyle(tint: .accentRed))
+        .padding(.horizontal, .padding16)
+        .onChange(of: showOnlyFavorites) {
+            viewModel.applyFilter(showOnlyFavorites: showOnlyFavorites)
+        }
+    }
+    private var searchBar: some View {
+        SearchBar(text: $viewModel.searchText)
+            .padding(.horizontal, .padding16)
+    }
+    private var listView:some View {
+        List(viewModel.filteredCities) { city in
+            VStack(alignment: .leading, spacing: .spacing8) {
+                Text(city.title)
+                    .font(UalaFont.medium(.fontSize14))
+                    .foregroundColor(.primary)
+
+                Text(city.subtitle)
+                    .font(UalaFont.light(.fontSize12))
+                    .foregroundColor(.textSecondary)
+
+                HStack {
+                    Button {
+                        selectedCity = city
+                        detailMode = .map
+                    } label: {
+                        Text("Ver en mapa")
+                            .font(UalaFont.regular(.fontSize14))
+                    }
+                    .buttonStyle(.cityInfoStyle())
+
+                    Button {
+                        selectedCity = city
+                        detailMode = .info
+                    } label: {
+                        Text("+ Info")
+                            .font(UalaFont.regular(.fontSize14))
+                            .foregroundColor(Color.primaryBlue)
+                    }
+                }
+            }
+            .padding(.vertical, .padding8)
+            .contentShape(Rectangle())
+            .overlay(alignment: .topTrailing) {
+                Button(action: {
+                    viewModel.toggleFavorite(id: city.id)
+                }) {
+                    (city.isFavorite ? Image.starfill : Image.star)
+                        .foregroundColor(city.isFavorite ? .accentRed : .gray)
+                        .imageScale(.medium)
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                .padding(.top, .padding4)
+            }
+        }
     }
 }

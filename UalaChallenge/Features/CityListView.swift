@@ -35,16 +35,26 @@ struct CitiesListView: View {
             }
         }
     }
-
-    private var searchBar: some View {
-        SearchBar(text: $viewModel.searchText)
-    }
     private var header: some View {
         Text(String.citiesListTitle)
             .font(UalaFont.bold(.fontSize40))
             .foregroundColor(Color.backgroundBlue)
             .padding()
     }
+    private var filterToggle: some View {
+        Toggle(isOn: $showOnlyFavorites) {
+            Text(String.showFavoritesToggleLabel)
+                .font(UalaFont.medium(.fontSize14))
+                .foregroundColor(.textsecondary)
+        }
+        .toggleStyle(SwitchToggleStyle(tint: .accentRed))
+        .padding(.horizontal, .padding16)
+        
+    }
+    private var searchBar: some View {
+        SearchBar(text: $viewModel.searchText)
+    }
+
     private var listView: some View {
         List(viewModel.filteredCities) { city in
             HStack(spacing: .spacing12) {
@@ -91,15 +101,5 @@ struct CitiesListView: View {
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .background(Color.backgroundLight)
-    }
-    private var filterToggle: some View {
-        Toggle(isOn: $showOnlyFavorites) {
-            Text(String.showFavoritesToggleLabel)
-                .font(UalaFont.medium(.fontSize14))
-                .foregroundColor(.textsecondary)
-        }
-        .toggleStyle(SwitchToggleStyle(tint: .accentRed))
-        .padding(.horizontal, .padding16)
-        
     }
 }
