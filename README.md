@@ -58,8 +58,6 @@ Mocks were used for both `CityServiceProtocol` and `FavoritesStorageProtocol`.
 
 ## Project Structure
 
-## Project Structure
-
 - **Coordinators/**: Navigation logic using `Router` and `CitiesRoutes`
 - **Core/**
   - **Models/**: Data models like `City` and `CityViewData`
@@ -80,9 +78,9 @@ Mocks were used for both `CityServiceProtocol` and `FavoritesStorageProtocol`.
     
 ---
 
-#Demo:
+## Demo:
 https://drive.google.com/drive/folders/1F63eGvxoIwJxJCODhbtcFno00RQKjqvo?usp=drive_link
 
-#Challenge:
+## Challenge:
 [Mobile Challenge - v0.7.pdf](https://github.com/user-attachments/files/20260120/Mobile.Challenge.-.v0.7.pdf)
 
