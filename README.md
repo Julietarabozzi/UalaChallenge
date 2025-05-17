@@ -57,18 +57,28 @@ Mocks were used for both `CityServiceProtocol` and `FavoritesStorageProtocol`.
 ---
 
 ## Project Structure
-├── Features/               # Views, ViewModels, navigation
-├── Persistence/            # UserDefaults wrapper
-├── Services/               # CityService and its protocol
-├── DesignSystem/           # Fonts, Colors, Icons, Spacing
-├── Tests/                  # Unit tests
+
+## Project Structure
+
+- **Coordinators/**: Navigation logic using `Router` and `CitiesRoutes`
+- **Core/**
+  - **Models/**: Data models like `City` and `CityViewData`
+  - **Service/**: `CityServiceProtocol` and implementation
+  - **Storage/**: UserDefaults wrapper (`FavoritesStorage`)
+  - **Utils/**: Helpers and general-purpose code
+- **Extensions/**: Custom extensions for `CGFloat`, `Color`, `Image`, etc.
+- **Features/**
+  - **Cities/**
+    - **ViewModels/**: `CitiesListViewModel`, `CityDetailDisplayMode`
+    - **Views/**: All main views including list, map, and responsive layouts
+- **Fonts/**: Custom typography like `UalaFont`, and Inter font files
+- **Localization/**: String localization files
+- **UIComponents/**: Reusable UI elements like `SearchBar`, `BackButton`, etc.
+- **Onboarding/**: Splash
+- **Tests/**
+  - `UalaChallengeTests/`: Unit tests (Given-When-Then structure)
+    
 ---
-
-## How to Run the Project
-
-1. Open `UalaChallenge.xcodeproj` in Xcode.
-2. Run the app on any iOS 17+ simulator.
-3. To run tests: select the `UalaChallenge` scheme and press `Cmd + U`.
 
 #Demo:
 https://drive.google.com/drive/folders/1F63eGvxoIwJxJCODhbtcFno00RQKjqvo?usp=drive_link
